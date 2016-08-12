@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Library</string>
+    <string name="nophoto">没有找到图片</string>
+    <string name="confirmcanceleditphoto">你确定要取消编辑吗?</string>
+    <string name="comfirm">确定</string>
+    <string name="cancel">取消</string>
+</resources>
