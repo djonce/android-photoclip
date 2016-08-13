@@ -1,4 +1,4 @@
-package tech.wangj.photoclip;
+package tech.wangjie.library;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

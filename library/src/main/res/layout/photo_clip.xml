@@ -10,7 +10,7 @@
         android:layout_height="fill_parent"
         android:layout_weight="1">
 
-        <tech.wangj.library.CropImageView
+        <tech.wangjie.library.CropImageView
             android:id="@+id/imagefilter_crop_display"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"

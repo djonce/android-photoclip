@@ -1,4 +1,4 @@
-package tech.wangj.library;
+package tech.wangjie.library;
 
 
 import android.app.Activity;
@@ -19,7 +19,6 @@ import android.widget.Toast;
 /**
  * 图片剪切类
  *
- * @author rendongwei
  */
 public class PhotoClipActivity extends Activity {
     private CropImageView mDisplay;
@@ -36,6 +35,7 @@ public class PhotoClipActivity extends Activity {
     private Bitmap mBitmap;// 修改的图片
     private CropImage mCropImage; // 裁剪工具类
 
+    public static String CROP_IMAGE_PATH = "path";
     public static String CROP_TYPE = "image_crop_type";
     public static int CORP_KEY_AVATAR = 0; // 方形 图像剪裁
     public static int CORP_KEY_COVER = 1;  // 长方形 16/9 视频封面剪裁
@@ -67,7 +67,9 @@ public class PhotoClipActivity extends Activity {
         confirm.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
                 // 保存修改的图片到本地,并返回图片地址  TODO HM NOTE 1S CT 拍照会报 java.io.IOException: open failed: EACCES (Permission denied) 但是权限都已经加过了，未知原因
-                mPath = PhotoUtil.saveToLocal(mCropImage.cropAndSave());
+                String saveImagePath = getExternalCacheDir().getAbsolutePath();
+
+                mPath = PhotoUtil.saveToLocal(saveImagePath, mCropImage.cropAndSave());
                 Intent intent = new Intent();
                 intent.putExtra("path", mPath);
                 setResult(RESULT_OK, intent);
@@ -97,7 +99,7 @@ public class PhotoClipActivity extends Activity {
 
     private void init() {
         // 接收传递的图片地址
-        mPath = getIntent().getStringExtra("path");
+        mPath = getIntent().getStringExtra(CROP_IMAGE_PATH);
 
         int corpType = getIntent().getIntExtra(CROP_TYPE, CORP_KEY_AVATAR);
 

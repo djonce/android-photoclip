@@ -1,4 +1,4 @@
-package tech.wangj.library;
+package tech.wangjie.library;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -270,7 +270,7 @@ public class CropImageView extends ImageViewTouchBase {
 		int cropWidth = Math.min(width, height);
 		int cropHeight = 0;
 
-		CropImage.CropType mCropType = mCropImage.getmCropType();
+		CropImage.CropType mCropType = mCropImage.getCropType();
 		if(CropImage.CropType.AVATAR == mCropType) {
 			cropHeight = cropWidth = Math.min(width, height) * 4 / 5;
 		}else if (CropImage.CropType.COVER == mCropType) {

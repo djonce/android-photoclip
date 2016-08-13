@@ -1,4 +1,4 @@
-package tech.wangj.library;
+package tech.wangjie.library;
 
 import android.graphics.Bitmap;
 import android.graphics.Matrix;

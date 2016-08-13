@@ -1,4 +1,4 @@
-package tech.wangj.library;
+package tech.wangjie.library;
 
 import android.app.Activity;
 import android.content.Context;
@@ -42,7 +42,7 @@ public class CropImage {
 		this.mCropType = mCropType;
 	}
 
-	public CropType getmCropType() {
+	public CropType getCropType() {
 		return mCropType;
 	}
 
@@ -94,7 +94,6 @@ public class CropImage {
 				} catch (InterruptedException e) {
 					throw new RuntimeException(e);
 				}
-				// mRunFaceDetection.run();
 			}
 		}, mHandler);
 	}
@@ -196,10 +195,8 @@ public class CropImage {
 		}
 		return croppedImage;
 	}
+
 	private void showProgressDialog(String msg, Runnable job, Handler handler) {
-		// final ProgressDialog progress = ProgressDialog.show(mContext, null,
-		// msg);
-		// new Thread(new BackgroundJob(progress, job, handler)).start();
 		new Thread(new BackgroundJob(msg, job, handler)).start();
 	}
 
@@ -318,26 +315,11 @@ public class CropImage {
 			mHandler.post(new Runnable() {
 				public void run() {
 					mWaitingToPick = mNumFaces > 1;
-					// if (mNumFaces > 0) {
-					// // for (int i = 0; i < mNumFaces; i++) {
-					// for (int i = 0; i < 1; i++) {
-					// handleFace(mFaces[i]);
-					// }
-					// } else {
 					makeDefault();
-					// }
 					mImageView.invalidate();
 					if (mImageView.mHighlightViews.size() > 0) {
 						mCrop = mImageView.mHighlightViews.get(0);
 						mCrop.setFocus(true);
-					}
-
-					if (mNumFaces > 1) {
-						// CR: no need for the variable t. just do
-						// Toast.makeText(...).show().
-						// Toast t = Toast.makeText(mContext,
-						// R.string.multiface_crop_help, Toast.LENGTH_SHORT);
-						// t.show();
 					}
 				}
 			});
@@ -345,26 +327,15 @@ public class CropImage {
 	};
 
 	class BackgroundJob implements Runnable {
-		// private ProgressDialog mProgress;
 		@SuppressWarnings("unused")
 		private String message;
 		private Runnable mJob;
 		private Handler mHandler;
 
-		// public BackgroundJob(ProgressDialog progress, Runnable job, Handler
-		// handler)
-		// {
-		// mProgress = progress;
-		// mJob = job;
-		// mHandler = handler;
-		// }
 		public BackgroundJob(String m, Runnable job, Handler handler) {
 			message = m;
 			mJob = job;
 			mHandler = handler;
-			// mProgress = new ProgressDialog(mContext);
-			// mProgress.setMessage(message);
-			// mProgress.show();
 		}
 
 		public void run() {
@@ -393,17 +364,6 @@ public class CropImage {
 				mJob.run();
 			} finally {
 				mHandler.sendMessage(mHandler.obtainMessage(PhotoClipActivity.REMOVE_PROGRESS));
-				// mHandler.post(new Runnable()
-				// {
-				// public void run()
-				// {
-				// if (mProgress != null && mProgress.isShowing())
-				// {
-				// mProgress.dismiss();
-				// mProgress = null;
-				// }
-				// }
-				// });
 			}
 		}
 	}

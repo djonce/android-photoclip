@@ -1,19 +1,7 @@
-package tech.wangj.library;
+package tech.wangjie.library;
 
-import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.ColorMatrix;
-import android.graphics.ColorMatrixColorFilter;
-import android.graphics.Paint;
-import android.graphics.PorterDuff.Mode;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.media.ThumbnailUtils;
 import android.os.Environment;
 
 import java.io.File;
@@ -89,6 +77,12 @@ public class PhotoUtil {
 	 * @return 图片路径
 	 */
 	public static String saveToLocal(String imagePath, Bitmap bm) {
+
+		if (!Environment.getExternalStorageState().equals(
+				Environment.MEDIA_MOUNTED)) {
+			return null;
+		}
+
 		FileOutputStream fileOutputStream = null;
 		File file = new File(imagePath);
 		if (!file.exists()) {
@@ -116,12 +110,4 @@ public class PhotoUtil {
 		return filePath;
 	}
 
-	public static String saveToLocal(Bitmap bm) {
-		if (!Environment.getExternalStorageState().equals(
-				Environment.MEDIA_MOUNTED)) {
-			return null;
-		}
-		String defaultPath = Environment.getExternalStorageState();
-		return saveToLocal(defaultPath, bm);
-	}
 }

@@ -1,4 +1,4 @@
-package tech.wangj.photoclip;
+package tech.wangjie.photoclip;
 
 import org.junit.Test;
 
