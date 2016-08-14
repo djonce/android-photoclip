@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
                     Intent gallery = new Intent(this, PhotoClipActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putString("path", imagePath);
+                    bundle.putInt(PhotoClipActivity.CROP_TYPE, PhotoClipActivity.CORP_KEY_AVATAR);
                     gallery.putExtras(bundle);
                     startActivityForResult(gallery, CLIP);
                     break;
@@ -58,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
                         Intent camera = new Intent(this, PhotoClipActivity.class);
                         Bundle bundle1 = new Bundle();
                         bundle1.putString("path", photoFile.getPath());
+                        bundle1.putInt(PhotoClipActivity.CROP_TYPE, PhotoClipActivity.CORP_KEY_COVER);
                         camera.putExtras(bundle1);
                         startActivityForResult(camera, CLIP);
                     }
